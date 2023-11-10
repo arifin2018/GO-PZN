@@ -1,0 +1,24 @@
+1.  Membuat project
+untuk membuat module kita bisa pake command
+--go mod init (biasanya sama dengan nama project/foldernya)- 
+--go mod init GO-PZN--
+
+2. Membuat Hello world
+- touch helloworld.go
+package main --> tulisan `package` harus kecil semua karna case sensitive (huruf nya case sensitive)
+
+import "fmt" --> fungsi import ini ketika kita ingin mengambil library (huruf nya case sensitive)
+
+func main()  { --> function main,function pertama kali di jalankan
+    fmt.Println("hello world") -->ini untuk mencetak string (huruf nya case sensitive)
+}
+/**
+untuk running nya bisa pake 
+`go run helloworld.go`
+atau
+`go build` 
+
+perbedaan nya adalah 
+- go run hanya menjalankan 1 file
+- go build dia akan build dulu ke binary file lalu filenya bisa dijalankan 
+*/
