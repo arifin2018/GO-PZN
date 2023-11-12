@@ -42,3 +42,9 @@ dia tidak menerima nilai minimum angka minus
 
 4. Tipe data bool
 tipe data bool hanya ada true dan false
+
+5. Tipe data string
+- string adalah tipe data kumpulan karakter, dari karakter huruf kosong sampe tak terhingga
+- function string :
+len("string") = adalah function untuk menghitung panjangnya string/kata termasuk spasi juga di hitung
+"string"[0] = pengambilan huruf dari string di index ke 0. akan tetapi ini akan mengambalikan nilai byte/angka
