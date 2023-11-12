@@ -22,3 +22,23 @@ perbedaan nya adalah
 - go run hanya menjalankan 1 file
 - go build dia akan build dulu ke binary file lalu filenya bisa dijalankan 
 */
+
+3. Multiple Main Function
+Golang tidak memperbolehkan kita membuat nama function yang sama, di dalam satu project atau di dalam satu module
+    contoh di dalam file : 
+- a.go ada function Main()
+- b.go ada function Main()
+
+karna 2 function ini namanya sama Main() Main(),walaupun beda file maka ini tidak diperbolehkan(forbidden)
+
+4. Tipe data number
+    - integer
+    - Floating Point
+
+- tipe data integer(1)
+dia masih menerima nilai minimum di angka minus
+- tipe data integer(2)
+dia tidak menerima nilai minimum angka minus
+
+4. Tipe data bool
+tipe data bool hanya ada true dan false
