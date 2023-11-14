@@ -154,3 +154,8 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 - map adalah tipe data lain yang berisikan kumpulan data yang sama namun kita bisa menentukan key yang bisa kita inginkan
 - tidak ada batasan untuk data map bisa sebanyak banyak nya,asalkan key nya berbeda
 - jika kita menggunakan key yang sama,maka key yang sudah ada datanya akan ketiban
+
+16. if else expression
+- if expression adalah salah satu kunci percabangan,yang artinya hanya bisa di eksekusi jika nilainya bertipe true
+- else expression jika if nya gagal maka dia akan lari ke else expression
+- else if expression adalah untuk menambah kondisi lagi jika dibutuhkan
