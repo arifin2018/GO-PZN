@@ -48,3 +48,109 @@ tipe data bool hanya ada true dan false
 - function string :
 len("string") = adalah function untuk menghitung panjangnya string/kata termasuk spasi juga di hitung
 "string"[0] = pengambilan huruf dari string di index ke 0. akan tetapi ini akan mengambalikan nilai byte/angka
+
+6. variable
+- variable adalah tempat untuk menyimpan data dan wajib digunakan saat kita mendeklarasinya 
+- saat kita membuat variable kita wajib menyertakan tipe datanya
+    var name string
+
+- akan tetapi jika kita langsung inisialisasi data pada variable nya,maka tidak perlu lagi untuk menyertakan tipe datanya
+    var name = "arifin" 
+
+- unik-nya di golang untuk menulis kata `var` membuat variable tidak lah wajib asalkan kita bisa sertakan datanya
+    name := "arifin"
+
+- di golang bisa juga membuat/mendeklarasi multiple variable sekaligus ini akan lebih baik untuk kedepannya
+    var (
+		firstname = "nur"
+		lastname = "arifin"
+	)
+
+7. constant
+- constant sama seperti variable untuk menyimpan data, AKAN TETAPI constant tidak boleh di rubah value/datanya,dan tidak error jika tidak digunakan
+- di golang bisa juga membuat/mendeklarasi multiple constant sekaligus ini akan lebih baik untuk kedepannya
+    const (
+		firstname = "nur"
+		lastname = "arifin"
+	)
+
+8. konversi tipe data
+- ketika kita ingin mengambil huruf dari string,balikannya tidak langsung huruf melainkan byte of int
+  solusinya adalah perlu di konversi dulu ke string() supaya bisa menjadi huruf
+
+9. type declarations
+- Type Declarations adalah kemampuan membuat ulang tipe data baru dari tipe data yang sudah ada
+- Type Declarations biasanya digunakan untuk membuat alias terhadap tipe data yang sudah ada, dengan tujuan agar lebih mudah dimengerti
+
+10. Operasi Matematika
+- operasi matematika wajib untuk tipe data number 
+    var matematika = 10 + 10
+    fmt.Println(matematika) //20
+- augmented assigment = ini untuk menambah variable yang sudah ada nilainya
+    var matematika2 = 10
+    matematika2 += 10 // matematika2 = matematika2 + 10
+    fmt.Println(matematika2) //20
+
+11. Operasi Perbandingan
+- operasi yang membandingkan 2 buah tipe data biasanya tipe data int untuk kurang dari dan lebih dari
+- operasi Perbandingan akan mengembalikan nilai boolean (true or false)
+    "Arifin" == "arifin" //false
+    "Arifin" == "Arifin" //true
+
+    "Arifin" > "arifin" //false
+    "Arifin" > "Arifin" //false
+    
+    "Arifin" >= "arifin" //false
+    "Arifin" >= "Arifin" //true
+
+    "a" > "b" //false
+    "b" > "a" //true (karena B lebih besar / lebih dulu dari pada A)
+
+    "b" > "B" //true (karena b(kecil) lebih besar / lebih dulu dari pada B(besar))
+
+12. Operasi boolean
+
+13. Tipe data array
+- array adalah kumpulan data yang ber-isikan tipe data yang sama
+    misalkan kita set di tipe data string,maka semuanya wajib string
+    dan nilai panjang nya harus di set di awal
+- di array juga default value nya adalah 0 
+- untuk melihat panjang array nya bisa menggunakan len(array)
+- di golang kita tidak bisa menghapus nilai di array atau di unset seperti di php itu tidak ada dan tidak bisa
+- cara penulisan array ada 2 macam
+    - `var names [2]string
+        names[0] = "nur"
+        names[1] = "arifin"
+        fmt.Println(names)`
+
+    - `var names [2]string = [2]string{
+        "nur",
+        "arifin",
+    }`
+
+    - `var names = [2]string{
+        "nur",
+        "arifin",
+    }`
+
+14. tipe data slice
+- Tipe data slice mirip seperti tipe data array, hanya saja tipe data slice dia ukuran-nya bisa berubah berubah seperti array di PHP
+- ada 3 data penting di slice yaitu: pointer,length,capacity
+    - pointer = adalah petunjuk data awalnya (mau dari berapa)[pointer:capacity]
+    - length = panjang slice
+    - capacity = adalah petunjuk data akhirnya (mau sampe berapa)[pointer:capacity]
+- kalo kita perhatikan pada contoh di slice ini,sebenarnya slice hanya menunjuk untuk melakukan perubahan pada data yang sudah ada
+    misalkan data nya sudah ada `
+        var names = [...]string{"azriel","rafiq","pradipta","khoirunnisa","miftahul","jannah"}
+        
+        nameSliceKhoirunnisa := names[3:]
+        nameSliceKhoirunnisa[1] = "MJ"
+        fmt.Println(nameSliceKhoirunnisa) //[khoirunnisa MJ jannah]
+        fmt.Println(names) //[azriel rafiq pradipta khoirunnisa MJ jannah]
+    ` data pada names sudah terubah yang tadinya 'miftahul' menjadi 'MJ',padahal kita rubah di variable 'nameSliceKhoirunnisa'
+    itu karena kita menggunakan slice yang mengambil data dari array names maka dari itu dia(variable names) ikut berubah
+
+15. tipe data mep
+- map adalah tipe data lain yang berisikan kumpulan data yang sama namun kita bisa menentukan key yang bisa kita inginkan
+- tidak ada batasan untuk data map bisa sebanyak banyak nya,asalkan key nya berbeda
+- jika kita menggunakan key yang sama,maka key yang sudah ada datanya akan ketiban
