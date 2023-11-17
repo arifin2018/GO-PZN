@@ -174,3 +174,14 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 19. break and continue
 - break adalah untuk menghentikan program yang sedang berjalan
 - continue adalah untuk melewati kondisi yang ada
+
+20. Function
+- function adalah sebuah block kode yang segaja digunakan agar program kita dapat digunakan berulang ulang
+- cara membuat func sangat sederhana,hanya dengan cara menggunakan kata kunci func dan nama function nya lalu block kode isi function
+- namun nama function tidak boleh menggunakan spasi 
+
+21. Function parameter
+- function parameter tidaklah wajib namun akan tetapi jika dibutuhkan kita harus membawa data parameternya
+
+22. Function return value
+- kita harus membuat function yang mengembalikan data dengan menulis kata return dan mendeklarasi tipe data di samping function

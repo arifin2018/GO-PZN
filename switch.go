@@ -14,14 +14,14 @@ func main()  {
 		fmt.Println("else")
 	}
 
-	switch length:= len(name); length > 5 {
+	switch length:= len(name); length > 5 { //switch dengan kodisi
 	case true:
 		fmt.Println("lebih dari 5")
 	case false:
 		fmt.Println("kurang dari 5")
 	}
 
-	switch {
+	switch { //switch kosong case dengan kodisi
 	case string(name[0]) == "a":
 		fmt.Println("a")
 	case string(name[0]) == "b":
