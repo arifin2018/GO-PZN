@@ -159,3 +159,18 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 - if expression adalah salah satu kunci percabangan,yang artinya hanya bisa di eksekusi jika nilainya bertipe true
 - else expression jika if nya gagal maka dia akan lari ke else expression
 - else if expression adalah untuk menambah kondisi lagi jika dibutuhkan
+
+17. switch case
+
+18. for loop
+- for tanpa statment
+- for dengan statment = perlu menambahkan 2 statment untuk for nya,for i := 1; i < 10; i++
+    - i := 1; //init statment
+    - i < 10; //kondisi statment
+    - i++; //increment statment
+- for range
+    - dengan data array jika ingin mengambil value secara langsung tanpa melakukan indexing
+
+19. break and continue
+- break adalah untuk menghentikan program yang sedang berjalan
+- continue adalah untuk melewati kondisi yang ada
