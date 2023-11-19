@@ -189,3 +189,9 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 23. Function return multiple value
 - di golang kita bisa mengembalikan beberapa value,bisa sebanyak banyaknya contohnya seperti ini
 - jika kita ingin tidak mengambil nilainya cukup gunakan _(underscore) pada variable
+
+24. variadic variable (varargs - variable arguments)
+- varargs bisa menerima lebih dari satu input,mirip seprti array
+- lalu apa bedanya sama tipe data array?
+    - tipe data array wajib membuat array terlebih dahulu sebelum mengirimkan ke function
+    - varargs bisa langsung mengirimkan datanya dan di pisahkan dengan tanda koma 
