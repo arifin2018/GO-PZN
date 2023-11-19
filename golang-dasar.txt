@@ -185,3 +185,7 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 
 22. Function return value
 - kita harus membuat function yang mengembalikan data dengan menulis kata return dan mendeklarasi tipe data di samping function
+
+23. Function return multiple value
+- di golang kita bisa mengembalikan beberapa value,bisa sebanyak banyaknya contohnya seperti ini
+- jika kita ingin tidak mengambil nilainya cukup gunakan _(underscore) pada variable
