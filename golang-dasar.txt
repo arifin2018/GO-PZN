@@ -195,3 +195,6 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 - lalu apa bedanya sama tipe data array?
     - tipe data array wajib membuat array terlebih dahulu sebelum mengirimkan ke function
     - varargs bisa langsung mengirimkan datanya dan di pisahkan dengan tanda koma 
+- tapi apakah bisa kita kirim data array slice?
+    - bisa
+        - akan tetapi kita perlu menambahkan ... setelah declare variable nya

@@ -12,5 +12,9 @@ func alphabets(data ...string) string {
 
 func main(){
 	alphabet := alphabets("a","b","c","d","e","f","g","h")
-	fmt.Println(alphabet)
+	fmt.Println(alphabet) //abcdefgh
+
+	dataAlphabet2 := []string{"a","b","c","d","e","f"}
+	alphabet2 := alphabets(dataAlphabet2...) //abcdef
+	fmt.Println(alphabet2)
 }
