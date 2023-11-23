@@ -198,3 +198,13 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 - tapi apakah bisa kita kirim data array slice?
     - bisa
         - akan tetapi kita perlu menambahkan ... setelah declare variable nya
+
+25. function as parameter
+- melempar function di function paarameter
+- function type decleration
+    -biasanya ini di buat jika function parameternya terlalu panjang
+
+26. AnonymousFunction
+- function tanpa nama,biasanya digunakan untu langsung menulis function nya dan hanya sekali digunakan biasanya
+
+27. 
