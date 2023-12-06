@@ -207,4 +207,30 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 26. AnonymousFunction
 - function tanpa nama,biasanya digunakan untu langsung menulis function nya dan hanya sekali digunakan biasanya
 
-27. 
+27. RecursiveFunction
+- Recursive function adalah function yang memanggil function dirinya sendiri
+- terkadang ada beberapa case,permasalahan lebih mudah di selesaikan dengan recursive function. Contohnya adalah FACTORIAL
+
+28. Closure
+- function di dalam function 
+- Jadi, di dalam function (disebut dengan outer) ada sebuah function (yang disebut dengan inner)
+
+29. defer,panic dan recovery
+- defer : untuk memanggil function terakhir,dari pada di taro bawah better di taro atas pake defer
+- defer : kalo tidak pake defer dan kode programnya di taro paling bawah supaya jadi terakhir, ketika error dia tidak akan di panggil,karna sudah error terlebih dahulu
+- panic : sendiri itu untuk memberhentikan program, jadi ketika panic program akan langsung terhenti
+- recovery : mengambil nilai panic dan membuat program akan berjalan lagi
+
+30. struct
+- struct adalah kumpulan field (mirip sebuah class yang memiliki property saja cuman)
+
+31. struct Method
+- struct Method adalah function yang menempel di struct (kalo di OOP adalah function yang ada di dalam class)
+
+32. interface
+- interface adalah sebagai kontrak method yang ada di struct
+- untuk menggunakan interface tinggal pasang saja di struct 
+    - func (people People)=>nama struct  GetName()=>nama function interface     string {
+        - type name interface {
+            GetName() string
+        }
