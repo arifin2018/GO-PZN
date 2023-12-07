@@ -234,3 +234,16 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
         - type name interface {
             GetName() string
         }
+
+33. interface kosong
+- interface kosong digunakan untuk tipe data apapun,misalkan kita ingin balikan nya int,string,boolean kita bisa pake interface kosong tanpa kita sebutkan tipe datanya
+- interface kosong juga memiliki alias bernama `any`
+
+34. nil
+- nil adalah data yang kosong
+- nil sendiri hanya bisa digunakan dibeberapa tipe data,seperti interface,function,map,slice,pointer,channel
+
+35. Type Assertions
+- biasanya digunakan untuk merubah tipe data yang awalnya interface kosong
+- kita bisa check type nya menggunakan .(type) didalam switch
+ 
