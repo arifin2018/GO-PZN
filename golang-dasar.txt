@@ -246,4 +246,10 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 35. Type Assertions
 - biasanya digunakan untuk merubah tipe data yang awalnya interface kosong
 - kita bisa check type nya menggunakan .(type) didalam switch
- 
+
+36. Pointer atau &(dan)
+- di golang defaultnya adalah pass by value
+- contohnya bisa liat di gif ini
+
+37. asterisk operator atau operator *(bintang)
+- saat kita mengubah variable pointer
