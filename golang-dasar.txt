@@ -260,3 +260,9 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 39. pointerMethod
 - method yang seperti kita tahu hubungannya erat dengan struct
 - namun cara mengubah pointer di method adalah dengan menambah bintang(*) di depan sturct parameternya
+
+
+
+41. packageInit
+- function init adalah function yang pertama kali di jalankan mirip dengan constructor
+- kalo kita ingin menjalankan function initnya saja,tanpa memanggil packagenya di function,kita bisa menggunakan (blank indenti, _) di import   
