@@ -253,3 +253,6 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 
 37. asterisk operator atau operator *(bintang)
 - saat kita mengubah variable pointer
+
+38. function New
+- New sama dengan pointer yang berarti,sama menggunakan &address1,namun hanya saja ini mengisi nilai default ketika kita menggunakan function new
