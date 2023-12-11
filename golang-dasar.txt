@@ -261,7 +261,9 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 - method yang seperti kita tahu hubungannya erat dengan struct
 - namun cara mengubah pointer di method adalah dengan menambah bintang(*) di depan sturct parameternya
 
-
+40. packageAndImport
+- nama package harus di isi dengan nama foldernya
+- namun akan tetapi nama function depannya harus huruf besar supaya bisa di akses di file lainnya
 
 41. packageInit
 - function init adalah function yang pertama kali di jalankan mirip dengan constructor
@@ -269,3 +271,4 @@ len("string") = adalah function untuk menghitung panjangnya string/kata termasuk
 
 42. errors
 - kita bisa membuat error menggunakan error.new dan biasanya kita kembalikan di return value ke 2
+
