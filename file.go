@@ -2,6 +2,8 @@ package main
 
 import (
 	"bufio"
+	"fmt"
+	"io"
 	"os"
 )
 
@@ -36,10 +38,10 @@ func readFile(name string) (string,error) {
 	var message string
 	for {
 		line,_,err := reader.ReadLine()
-		if err != nil {
-			return "", err
+		if err == io.EOF {
+			break
 		}
-		message += string(line)
+		message = message + string(line)
 	}
 	return message, nil
 }
@@ -47,5 +49,6 @@ func readFile(name string) (string,error) {
 func main() {
 	// createNewFile("golang.log","nur arifin")
 	// appendNewLineFile("golang.log","\nnur arifin 2")
-	readFile("golang.log")
+	read, _ := readFile("golang.log")
+	fmt.Println(read)
 }
