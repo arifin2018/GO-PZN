@@ -8,3 +8,11 @@
     - go test -v (yang artinya verbose - verbose adalah memberi tahu file file apa saja yang dijalankan)
     - go test -v --run=namafunctionTest (ini adalah cara salah satu menggunakan unit test golang - go test -v --run=TestHelloWorld)
     - go test ./... cara menjalankan semua function unit test
+
+2. Mengagalkan test
+- dalam mengagalkan test,kita bisa pake argument yang sudah disediakan oleh golang yaitu `t *testing.T` 
+- untuk menghentikan program unit testing itu sendiri terdapat beberapa cara:
+    - t.Fail() => yang dimana ini akan menyelesaikan unit testnya sampe bawah atau sampe selesai testing nya dan akan memberi tahu kalo perangkatnya error
+    - t.FailNow() => yang dimana ini akan menyetop atau berhenti ketika unit testnya gagal
+    - t.Error() => sama seperti t.Fail hanya saja t.Error(argument) bisa memberikan/mengirim argument untuk dikirim ke parameter
+    - t.Fatal() => sama seperti t.FailNow hanya saja t.Fatal(argument) bisa memberikan/mengirim argument untuk dikirim ke parameter
