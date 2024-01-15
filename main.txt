@@ -1,0 +1,10 @@
+1. Membuat Unit Test
+- dalam membuat unit test,file nya harus di akhiri dengan nama test `hello_world_test.go` dari `hello world.go` 
+- nama function harus mengguanakan prefix depan Test,dengan contoh TestHelloWorld
+- serta wajib memberikan parameter (t *testing.T),dengan contoh TestHelloWorld(t *testing.T)
+- di function unit test kita tidak boleh juga memberikan return value
+- cara menjalankan unit test:
+    - go test (untuk menjalankan semua testing dalam folder tertentu)
+    - go test -v (yang artinya verbose - verbose adalah memberi tahu file file apa saja yang dijalankan)
+    - go test -v --run=namafunctionTest (ini adalah cara salah satu menggunakan unit test golang - go test -v --run=TestHelloWorld)
+    - go test ./... cara menjalankan semua function unit test
