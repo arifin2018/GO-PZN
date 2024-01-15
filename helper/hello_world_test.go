@@ -9,6 +9,7 @@ func TestHelloWorld(t *testing.T)  {
 
 	if result != "Hello arifin" {
 		// errors.New("INI ERROR")
-		panic("error")
+		// panic("error")
+		t.Error("hai")
 	}
 }
