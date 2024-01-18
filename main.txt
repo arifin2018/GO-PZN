@@ -16,3 +16,16 @@
     - t.FailNow() => yang dimana ini akan menyetop atau berhenti ketika unit testnya gagal
     - t.Error() => sama seperti t.Fail hanya saja t.Error(argument) bisa memberikan/mengirim argument untuk dikirim ke parameter
     - t.Fatal() => sama seperti t.FailNow hanya saja t.Fatal(argument) bisa memberikan/mengirim argument untuk dikirim ke parameter
+
+3. Assertion test
+- jika kita ingin melakukan pengecekan sama nilainya,kita wajib menggunakan library dari luar golang,karena golang tidak menyediakan unit test Assertion
+- go get github.com/stretchr/testify
+- perbedaan assert.Equal & require.Equal 
+    - assert.Equal => dia menggunakan fail
+    - require.Equal => dia menggunakan failNow
+
+4. Before After unit test
+- Jika kita ingin melakukan connection database terlebih dahulu atau mungkin melakukan ambil user sebelum fungsi unit test semua dijalankan,kita bisa menggunakan (t *testing.M)
+- jika kita ingin melakukan sebelum fungsi unit test semua nya,kita bisa melakukannya di sebelum t.Run()
+- jika kita ingin melakukan setelah fungsi unit test semua nya,kita bisa melakukannya setelah t.Run()
+- contoh nya ada di hello_world_test.go (func TestMain(t *testing.M))
