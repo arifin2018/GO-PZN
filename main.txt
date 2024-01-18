@@ -7,7 +7,9 @@
     - go test (untuk menjalankan semua testing dalam folder tertentu)
     - go test -v (yang artinya verbose - verbose adalah memberi tahu file file apa saja yang dijalankan)
     - go test -v --run=namafunctionTest (ini adalah cara salah satu menggunakan unit test golang - go test -v --run=TestHelloWorld)
-    - go test ./... cara menjalankan semua function unit test
+    - go test -v ./... (cara menjalankan semua function unit test)
+    - go test -v --run TestSubTest ./helper (untuk menjalankan specifict nama function dan packagenya apa)
+    - go test -v --run TestSubTest/Nur ./helper (untuk menjalankan specifict nama function dan subtestnya serta packagenya apa)
 
 2. Mengagalkan test
 - dalam mengagalkan test,kita bisa pake argument yang sudah disediakan oleh golang yaitu `t *testing.T` 
@@ -29,3 +31,7 @@
 - jika kita ingin melakukan sebelum fungsi unit test semua nya,kita bisa melakukannya di sebelum t.Run()
 - jika kita ingin melakukan setelah fungsi unit test semua nya,kita bisa melakukannya setelah t.Run()
 - contoh nya ada di hello_world_test.go (func TestMain(t *testing.M))
+
+5. Table test
+- table test memudahkan developer dalam membuat function unit test yang sama,hanya saja dia tinggal membuat struct terlebih dahulu lalu di buat iterasi/loop data struct nya
+- contohnya ada di => function TestTableTest, package helper/hello_world_test
