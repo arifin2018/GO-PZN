@@ -81,3 +81,43 @@ func TestHelloWorldAssertion(t *testing.T)  {
 
 	assert.Equal(t, "Hello arifin", result)
 }
+
+func BenchmarkHelloWorld(t *testing.B)  {
+	for i := 0; i < t.N; i++ {
+		HelloWorld("arifin")
+	}
+}
+
+func BenchmarkHelloWorldSub(t *testing.B)  {
+	t.Run("Nur", func(b *testing.B) {
+		for i := 0; i < t.N; i++ {
+			HelloWorld("nur")
+		}
+	})
+	t.Run("arifin", func(b *testing.B) {
+		for i := 0; i < t.N; i++ {
+			HelloWorld("arifin")
+		}
+	})
+}
+
+func BenchmarkTable(t *testing.B)  {
+	Benchmark := []struct{
+		name string
+	}{
+		{
+			name: "nur",
+		},
+		{
+			name: "arifin",
+		},
+	}
+
+	for _, v := range Benchmark {
+		t.Run(v.name, func(b *testing.B) {
+			for b := 0; b < t.N; b++ {
+				HelloWorld(v.name)
+			}
+		})
+	}
+}
