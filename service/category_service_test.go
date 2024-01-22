@@ -26,7 +26,6 @@ func TestCategoryServiceGetSuccess(t *testing.T){
 	}
 	categoryRepository.Mock.On("FindById","2").Return(category)
 	result, err := categoryService.Get("2")
-
 	assert.Nil(t,err)
 	assert.NotNil(t,result)
 }
