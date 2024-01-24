@@ -76,3 +76,17 @@ func OnlyIn(channel chan<- string)  {
 func OnlyOut(channel <-chan string, data *string)  {
 	*data = <- channel
 }
+
+func TestBufferedChannel(t *testing.T)  {
+	channel := make(chan string,2)
+	defer close(channel)
+
+	channel <- "Nur"
+	channel <- "Arifin"
+
+	data1 := <- channel
+	data2 := <- channel
+	
+	fmt.Println(data1)
+	fmt.Println(data2)
+}
