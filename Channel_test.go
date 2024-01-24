@@ -53,3 +53,26 @@ func TestChannelAsParameter(t *testing.T)  {
 	data := <- channel
 	fmt.Println(data.(*profile).name)
 }
+
+func TestInOutChannel(t *testing.T)  {
+	channel := make(chan string)
+	defer close(channel)
+
+	var data string
+
+	go OnlyIn(channel)
+	OnlyOut(channel, &data)
+
+	fmt.Println(data)
+
+	time.Sleep(5 * time.Second)
+}
+
+func OnlyIn(channel chan<- string)  {
+	time.Sleep(1 * time.Second)
+	channel <- "arifin"
+}
+
+func OnlyOut(channel <-chan string, data *string)  {
+	*data = <- channel
+}
