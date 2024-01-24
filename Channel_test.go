@@ -2,6 +2,7 @@ package gopzn
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -89,4 +90,22 @@ func TestBufferedChannel(t *testing.T)  {
 	
 	fmt.Println(data1)
 	fmt.Println(data2)
+}
+
+func TestRangeChannel(t *testing.T)  {
+	channel := make(chan string)
+
+	go func ()  {
+		for i := 0; i < 10; i++ {
+			channel <- "perulangan ke "+strconv.Itoa(i)
+		}
+		close(channel)
+		fmt.Println("========close==========")
+	}()
+
+	for v := range channel {
+		fmt.Println("menerima data " + v)
+	}
+	fmt.Println("===============================SELESAI==========================")
+
 }
