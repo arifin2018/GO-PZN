@@ -44,3 +44,40 @@
 - Untuk mengatasi masalah race condition tersebut, di Go-Lang terdapat sebuah struct bernama sync.Mutex
 - Mutex bisa digunakan untuk melakukan locking dan unlocking, dimana ketika kita melakukan locking terhadap mutex, maka tidak ada yang bisa melakukan locking lagi sampai kita melakukan unlock
 - contohnya ada di Mutex_test function TestMutex
+
+11. Deadlock
+- Hati-hati saat membuat aplikasi yang parallel atau concurrent, masalah yang sering kita hadapi adalah Deadlock
+- Deadlock adalah keadaan dimana sebuah proses goroutine saling menunggu lock sehingga tidak ada satupun goroutine yang bisa jalan
+- contohnya ada di Mutex_test function TestDeadLock
+
+12. sync.WaitGroup
+- WaitGroup adalah fitur yang bisa digunakan untuk menunggu sebuah proses selesai dilakukan
+- Hal ini kadang diperlukan, misal kita ingin menjalankan beberapa proses menggunakan goroutine, tapi kita ingin semua proses selesai terlebih dahulu sebelum aplikasi kita selesai
+- Kasus seperti ini bisa menggunakan WaitGroup
+- contohnya ada di WaitGroup_test function TestWaitGroup
+
+13. sync.Once
+- Once adalah fitur di Go-Lang yang bisa kita gunakan untuk memastikan bahsa sebuah function di eksekusi hanya sekali
+- Jadi berapa banyak pun goroutine yang mengakses, bisa dipastikan bahwa goroutine yang pertama yang bisa mengeksekusi function nya
+- contohnya ada di once_test function TestOnce
+
+14. sync.Pool
+- Pool adalah implementasi design pattern bernama object pool pattern. 
+- Sederhananya,kita bisa menyimpan datanya sementara lalu di ambil langsung menjadi null
+- Implementasi Pool di Go-Lang ini sudah aman dari problem race condition
+- contohnya ada di pool_test function TestPool
+
+15. sync.Map
+- Go-Lang memiliki sebuah struct beranama sync.Map
+- Map ini mirip Go-Lang map, namun yang membedakan, Map ini aman untuk menggunaan concurrent menggunakan goroutine
+- contohnya ada di map_test function TestMap
+
+16. sync.Cond
+- Cond adalah adalah implementasi locking berbasis kondisi. 
+- Cond membutuhkan Locker (bisa menggunakan Mutex atau RWMutex) untuk implementasi locking nya, namun berbeda dengan Locker biasanya, di Cond terdapat function Wait() untuk menunggu apakah perlu menunggu atau tidak
+- contohnya ada di cond_test function TestCond
+
+17. Atomic
+- Go-Lang memiliki package yang bernama sync/atomic
+- Atomic merupakan package yang digunakan untuk menggunakan data primitive secara aman pada proses concurrent
+- - contohnya ada di atomic_test function TestAtomic
