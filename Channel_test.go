@@ -141,3 +141,24 @@ func TestSelectChannel(t *testing.T)  {
 		}
 	}
 }
+
+func printMessage(what chan string) {
+    fmt.Println(<-what)
+}
+
+func TestChannelLagi(t *testing.T)  {
+	var messages = make(chan string)
+
+	var sayHelloTo = func(who string) {
+        var data = "hello "+ who
+        messages <- data
+    }
+
+	go sayHelloTo("john wick")
+	go sayHelloTo("john wick 2")
+	go sayHelloTo("john wick 3")
+
+	for i := 0; i < 3; i++ {
+		printMessage(messages)
+	}
+}
