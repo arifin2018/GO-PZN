@@ -114,21 +114,3 @@ func TestDeadLock(t *testing.T)  {
 	fmt.Println("User ", user1.Name, " Balance ", user1.Balance)
 	fmt.Println("User ", user2.Name, " Balance ", user2.Balance)
 }
-
-func RunAsynchronous(group *sync.WaitGroup, number int)  {
-	defer group.Done()
-	// group.Add(1)
-	fmt.Println("Hello ", number)
-}
-
-func TestWaitGroup(t *testing.T)  {
-	var wg sync.WaitGroup
-
-	for i := 0; i < 10; i++ {
-		wg.Add(1)
-		go RunAsynchronous(&wg, i)
-	}
-
-	wg.Wait()
-	fmt.Println("Selesai")
-}
