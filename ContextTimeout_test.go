@@ -8,27 +8,43 @@ import (
 	"time"
 )
 
+func createCounter2(ctx context.Context) (chan int, error) {
+	destination := make(chan int)
+	var err error
+	go func () error {
+		counter := 1
+		for {
+			fmt.Println("aku", counter)
+			select{
+			case <-ctx.Done():
+				err = ctx.Err()
+				return ctx.Err()
+			default:
+				destination <- counter
+				counter++
+				time.Sleep(1*time.Second)
+			}
+		}
+	}()
+
+
+	return destination,err
+}
+
 func TestContextTimeout(t *testing.T) {
 	fmt.Println("Total Golang Goroutine", runtime.NumGoroutine())
 	parent := context.Background()
-	ctx, cancel := context.WithTimeout(parent, 3*time.Nanosecond)
+	ctx, cancel := context.WithTimeout(parent, 1*time.Millisecond)
 	defer cancel()
-	destinationChan := make(chan int)
 	
-	destination := createCounter(destinationChan,ctx)
+	
+	destination,err := createCounter2(ctx)
+
 	
 	fmt.Println(<- destination)
+	fmt.Println(err)
 	for v := range destination {
-		select {
-		case <-time.After(1*time.Nanosecond):
-			break
-		case <-ctx.Done():
-			break
-		}
 		fmt.Println("counter ", v)
-		if v == 29 {
-			break;
-		}
 	}
 	
 	
