@@ -2,12 +2,11 @@ package gopzn
 
 import (
 	"database/sql"
-	"testing"
 	"time"
 )
 
-func GetConnection(t *testing.T)  {
-	db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/db")
+func GetConnection() *sql.DB {
+	db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/db?parseTime=true")
 	if err != nil {
 		panic(err)
 	}
@@ -16,4 +15,5 @@ func GetConnection(t *testing.T)  {
 	db.SetMaxOpenConns(100)
 	db.SetConnMaxIdleTime(5 * time.Minute)
 	db.SetConnMaxLifetime(60 * time.Minute)
+	return db
 }
