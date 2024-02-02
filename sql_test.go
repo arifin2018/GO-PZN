@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestExecContextInsertSql(t *testing.T)  {
@@ -96,4 +97,64 @@ func TestAutoIncrement(t *testing.T)  {
 	}
 
 	fmt.Println("Success insert new comment with id", resultId)
+}
+
+func TestPrepareStatement(t *testing.T)  {
+	db := GetConnection()
+	defer db.Close()
+
+	script := "INSERT INTO comments(email,comment) VALUES(?,?)"
+	statement, err := db.Prepare(script)
+	if err != nil {
+		panic(err)
+	}
+	defer statement.Close()
+
+	for i := 0; i < 10; i++ {
+		email := fmt.Sprintf("arifin%v@gmail.com",i)
+		comment := fmt.Sprintf("ini comment ke-%v",i)
+		result, err := statement.Exec(email, comment)
+		if err != nil {
+			panic(err)
+		}
+		if id, err := result.LastInsertId(); err != nil {
+			panic(err)
+		}else{
+			fmt.Println(id)
+		}
+	}
+}
+
+func TestTransactionDB(t *testing.T)  {
+	db := GetConnection()
+	defer db.Close();
+
+	ctx,cancel := context.WithTimeout(context.Background(), time.Second * 6)
+	defer cancel()
+	tx, err := db.Begin()
+	if err != nil {
+		panic(err)
+	}
+	script := "INSERT INTO comments(email,comment) VALUES(?,?)"
+	for i := 0; i < 10; i++ {
+		email := fmt.Sprintf("arifin%v@gmail.com",i)
+		comment := fmt.Sprintf("ini comment ke-%v",i)
+		result, err := tx.ExecContext(ctx,script,email, comment)
+
+		if err != nil {
+			tx.Rollback()
+			panic(err)
+		}
+		if id, err := result.LastInsertId(); err != nil {
+			tx.Rollback()
+			panic(err)
+		}else{
+			fmt.Println(id)
+		}
+	}
+
+	if err := tx.Commit(); err !=nil {
+		tx.Rollback()
+		panic(err)
+	}
 }
