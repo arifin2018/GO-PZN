@@ -27,10 +27,7 @@ func TestCommentInsert(t *testing.T)  {
 func TestCommentFindById(t *testing.T)  {
 	commentRepository := NewCommentRepository(databaseconnection.GetConnection())
 	ctx := context.Background()
-	// comment := entity.Comments{
-	// 	Email: "arifi222n@23gmail.com",
-	// 	Comment: "turzxc",
-	// }
+	
 	result,err := commentRepository.FindById(ctx,25)
 	if err != nil {
 		panic(err)
@@ -41,10 +38,7 @@ func TestCommentFindById(t *testing.T)  {
 func TestCommentFindAll(t *testing.T)  {
 	commentRepository := NewCommentRepository(databaseconnection.GetConnection())
 	ctx := context.Background()
-	// comment := entity.Comments{
-	// 	Email: "arifi222n@23gmail.com",
-	// 	Comment: "turzxc",
-	// }
+	
 	result,err := commentRepository.FindAll(ctx)
 	if err != nil {
 		panic(err)
