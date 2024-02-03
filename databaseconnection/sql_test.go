@@ -1,4 +1,4 @@
-package gopzn
+package databaseconnection
 
 import (
 	"context"

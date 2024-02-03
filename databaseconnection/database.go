@@ -1,4 +1,4 @@
-package gopzn
+package database_connection
 
 import (
 	"database/sql"
