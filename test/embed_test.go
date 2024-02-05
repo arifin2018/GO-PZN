@@ -1,8 +1,7 @@
-package gopzn
+package test
 
 import (
 	"embed"
-	_ "embed"
 	"fmt"
 	_ "image/png"
 	"io"
@@ -21,7 +20,8 @@ func TestString(t *testing.T)  {
 	fmt.Println(version)
 }
 
-//go:embed images/nikel.png
+//go:generate ../images/nikel.png ./local-asset-dir
+//go:embed local-asset-dir
 var nikel []byte
 func TestByte(t *testing.T)  {
 	err := ioutil.WriteFile("logonew.png",nikel, fs.ModePerm)
@@ -54,9 +54,10 @@ func TestWriteFile(t *testing.T)  {
 	fmt.Println(fileLocation)
 }
 
-//go:embed files/a.txt
-//go:embed files/b.txt
-//go:embed files/c.txt
+//go:generate ../files/a.txt ./local-asset-dir
+//go:generate ../files/b.txt ./local-asset-dir
+//go:generate ../files/c.txt ./local-asset-dir
+//go:embed local-asset-dir
 var files embed.FS
 func TestMultipleFIles(t *testing.T)  {
 	file, err := files.ReadFile("files/a.txt")
@@ -76,4 +77,18 @@ func TestMultipleFIles(t *testing.T)  {
 		panic(err)
 	}
 	fmt.Println(string(fileC))
+}
+
+//go:generate ../files ./local-asset-dir
+//go:embed local-asset-dir
+var path embed.FS
+func TestPathMatcher(t *testing.T){
+	dir, _ :=path.ReadDir("files")
+	for k, v := range dir {
+		if !v.IsDir() {
+			fmt.Println(k,v.Name())
+			content, _ := path.ReadFile("files/"+v.Name())
+			fmt.Println("content => ", string(content))
+		}
+	}
 }
