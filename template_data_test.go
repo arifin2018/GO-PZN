@@ -34,7 +34,7 @@ type paraghraf struct {
 	Name interface{}
 }
 
-type Data struct {
+type Datas struct {
 	Header string
 	H1     interface{}
 	P      paraghraf
@@ -42,7 +42,7 @@ type Data struct {
 
 func TemplateDataStruct(writer http.ResponseWriter, request http.Request) {
 	t := template.Must(template.ParseFiles("./templates/name.gohtml"))
-	Data := &Data{
+	Data := &Datas{
 		Header: "arifin header",
 		H1:     "arifin H1",
 		P: paraghraf{
