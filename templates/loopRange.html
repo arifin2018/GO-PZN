@@ -1,0 +1,22 @@
+<!-- 
+and => x && y — — — — — — or => x || y
+not => !x — — — — — — — — — eq => x == y
+ne => x != y — — — — — — — — lt => x < y
+gt => x > y — — — — — — — — le => x <= y
+ge => x >= y 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+</head>
+<body>
+    {{ range $index,$element := .Hobbies }}
+    <p>{{ $element }}</p>
+    {{ else }}
+    <h1>You haven't hoby</h1>
+    {{ end }}
+</body>
+</html>
