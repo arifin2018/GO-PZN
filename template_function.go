@@ -5,5 +5,5 @@ type MyPage struct {
 }
 
 func (MyPage MyPage) SayHello(name string) string {
-	return "hello " + name + "my name is " + MyPage.Name
+	return "hello " + name + " my name is " + MyPage.Name
 }
