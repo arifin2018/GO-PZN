@@ -12,6 +12,7 @@ type Customer struct {
 	Age       int
 	Married   bool
 	Hobbies   []string
+	Address   []Address
 }
 
 func TestCustomer(t *testing.T) {
