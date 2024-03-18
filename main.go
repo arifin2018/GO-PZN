@@ -1,31 +1,26 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"time"
+	"GoRestfulApi/controller"
+	"GoRestfulApi/repositories"
+	"GoRestfulApi/services"
+
+	"github.com/go-playground/validator/v10"
+	"github.com/julienschmidt/httprouter"
 )
 
-func fetchData(ctx context.Context, data chan<- string) {
-	select {
-	case <-time.After(1 * time.Second): // Simulasi operasi yang memakan waktu
-		data <- "Data berhasil diambil"
-	case <-ctx.Done():
-		data <- ctx.Err().Error() + " data error fetchData"
-	}
-}
-
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
 
-	dataChan := make(chan string)
-	go fetchData(ctx, dataChan)
+	validate := validator.New()
+	categoryRepository := repositories.NewCategoryRepository()
+	categoryService := services.NewCategoryService(categoryRepository)
+	categoryController := controller.NewCategoryController(categoryService)
 
-	select {
-	case result := <-dataChan:
-		fmt.Println(result)
-	case <-ctx.Done():
-		fmt.Println("Gagal mengambil data:", ctx.Err())
-	}
+	router := httprouter.New()
+
+	router.GET("/api/categories", categoryController.FindAll)
+	router.GET("/api/categories/:categoriesId", categoryController.FindById)
+	router.POST("/api/categories", categoryController.Create)
+	router.PUT("/api/categories/:categoriesId", categoryController.Update)
+	router.DELETE("/api/categories/:categoriesId", categoryController.Delete)
 }
