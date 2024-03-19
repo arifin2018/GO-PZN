@@ -6,16 +6,21 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 )
 
 type CategoryRepositoryImpl struct {
+	db *sql.DB
 }
 
-func NewCategoryRepository() CategoryRepository {
-	return &CategoryRepositoryImpl{}
+func NewCategoryRepository(db *sql.DB) CategoryRepository {
+	return &CategoryRepositoryImpl{
+		db: db,
+	}
 }
 
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, category domain.Category) domain.Category {
+	defer repository.db.Close()
 	query := "INSERT INTO `Category` (`Name`) VALUES (?)"
 	sqlResult, err := tx.ExecContext(ctx, query, category.Name)
 	helper.PanicIfError(err)
@@ -26,19 +31,27 @@ func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, 
 }
 
 func (repository *CategoryRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, category domain.Category) domain.Category {
+	defer repository.db.Close()
 	query := "UPDATE `Category` SET Name = ? where Id = ?"
 	_, err := tx.ExecContext(ctx, query, category.Name, category.Id)
-	helper.PanicIfError(err)
+	if err != nil {
+		// Handle error
+		// fmt.Println("Failed to execute query in transaction:", err)
+		fmt.Println("Failed to execute query in transaction:", err)
+		return category
+	}
 	return category
 }
 
 func (repository *CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, category domain.Category) {
+	defer repository.db.Close()
 	query := "DELETE from `Category` where Id = ?"
 	_, err := tx.ExecContext(ctx, query, category.Id)
 	helper.PanicIfError(err)
 }
 
 func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, categoryID int) (domain.Category, error) {
+	defer repository.db.Close()
 	query := "SELECT * from `Category` where Id = ?"
 	rows, err := tx.QueryContext(ctx, query, categoryID)
 	defer rows.Close()
@@ -53,6 +66,7 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 }
 
 func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Category {
+	defer repository.db.Close()
 	query := "select * from category"
 	sqlRow, err := tx.QueryContext(ctx, query)
 	defer sqlRow.Close()

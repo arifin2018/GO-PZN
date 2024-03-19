@@ -15,7 +15,7 @@ import (
 func main() {
 	db := app.NewDB()
 	validate := validator.New()
-	categoryRepository := repositories.NewCategoryRepository()
+	categoryRepository := repositories.NewCategoryRepository(db)
 	categoryService := services.NewCategoryService(categoryRepository, db, validate)
 	categoryController := controller.NewCategoryController(categoryService)
 
