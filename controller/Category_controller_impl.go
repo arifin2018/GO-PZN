@@ -5,6 +5,7 @@ import (
 	Web_category "GoRestfulApi/model/web/Category"
 	"GoRestfulApi/services"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -80,6 +81,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Delete(writer http.Respons
 
 func (CategoryControllerImpl *CategoryControllerImpl) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	categoryId := params.ByName("categoryId")
+	fmt.Println(categoryId)
 	id, err := strconv.Atoi(categoryId)
 	helper.PanicIfError(err)
 
