@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"GoRestfulApi/app"
 	"GoRestfulApi/helper"
 	Web_category "GoRestfulApi/model/web/Category"
 	"GoRestfulApi/services"
@@ -22,6 +23,7 @@ func NewCategoryController(categoryService services.CategoryService) CategoryCon
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer request.Body.Close()
 	decoder := json.NewDecoder(request.Body)
 	categoryCreateRequest := Web_category.CreateRequest{}
 	err := decoder.Decode(&categoryCreateRequest)
@@ -64,6 +66,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Update(writer http.Respons
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Delete(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer request.Body.Close()
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
 	helper.PanicIfError(err)
@@ -80,6 +83,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Delete(writer http.Respons
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer request.Body.Close()
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
 	helper.PanicIfError(err)
@@ -97,6 +101,8 @@ func (CategoryControllerImpl *CategoryControllerImpl) FindById(writer http.Respo
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) FindAll(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer app.NewDB().Close()
+	defer request.Body.Close()
 	categoryResponses := CategoryControllerImpl.CategoryService.FindAll(request.Context())
 	webResponse := Web_category.WebResponse{
 		Code:   200,
