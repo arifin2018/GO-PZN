@@ -23,6 +23,7 @@ func NewCategoryController(categoryService services.CategoryService) CategoryCon
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer app.NewDB().Close()
 	defer request.Body.Close()
 	decoder := json.NewDecoder(request.Body)
 	categoryCreateRequest := Web_category.CreateRequest{}
@@ -42,6 +43,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Create(writer http.Respons
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Update(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer app.NewDB().Close()
 	defer request.Body.Close()
 	decoder := json.NewDecoder(request.Body)
 	categoryUpdateRequest := Web_category.UpdateRequest{}
@@ -66,6 +68,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Update(writer http.Respons
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Delete(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer app.NewDB().Close()
 	defer request.Body.Close()
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
@@ -83,6 +86,7 @@ func (CategoryControllerImpl *CategoryControllerImpl) Delete(writer http.Respons
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+	defer app.NewDB().Close()
 	defer request.Body.Close()
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
