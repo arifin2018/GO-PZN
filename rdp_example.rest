@@ -1,5 +1,5 @@
 ### Get all category
-DELETE http://localhost:3000/api/categories
+GET http://localhost:3000/api/categories
 Accept: application/json
 
 ### Create new category
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###Get Category By Id
-GET http://localhost:3000/api/categories/5
+GET http://localhost:3000/api/categories/2
 Accept: application/json
 
 ### Update data category by id
