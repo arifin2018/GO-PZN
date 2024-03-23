@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"log"
+	"GoRestfulApi/exception"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -9,8 +9,9 @@ import (
 
 func AuthorizeMiddleware(n httprouter.Handle) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		log.Println("r.Response.Request.Body")
-		log.Println(r.)
-		n(w,r,p)
+		if r.Header.Get("X-API-KEY") != "RAHASIA" {
+			exception.CustomNotFound(w, r)
+		}
+		n(w, r, p)
 	}
 }
