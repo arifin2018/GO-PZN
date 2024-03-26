@@ -1,9 +1,12 @@
 package repositories
 
-import "context"
+import (
+	"context"
+	"database/sql"
+)
 
 type CategoryRepository interface {
-	Get(ctx context.Context)
+	Get(ctx context.Context, sqltx *sql.Tx)
 	GetById()
 	Insert()
 	Update()

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"GoResfulApiPribadi/app"
 	"GoResfulApiPribadi/controllers"
 	"GoResfulApiPribadi/repositories"
 	"GoResfulApiPribadi/routes"
@@ -8,10 +9,10 @@ import (
 )
 
 func main() {
-	// DB := app.Database()
+	DB := app.Database()
 
 	categoryRepository := repositories.CategoryRepositoryConstruct()
-	categoryServices := services.CategoryServiceConstruct(categoryRepository)
+	categoryServices := services.CategoryServiceConstruct(categoryRepository, DB)
 	categoryController := controllers.CategoryConstruct(categoryServices)
 	// categoryController2 := con /
 
