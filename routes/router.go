@@ -3,14 +3,13 @@ package routes
 import (
 	"GoRestfulApi/controller"
 	"GoRestfulApi/exception"
-	"GoRestfulApi/helper"
 	"GoRestfulApi/middleware"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-func Router(categoryController controller.CategoryController) {
+func Router(categoryController controller.CategoryController) *httprouter.Router {
 	router := httprouter.New()
 
 	Cors(router)
@@ -24,11 +23,5 @@ func Router(categoryController controller.CategoryController) {
 	router.PUT("/api/categories/:categoryId", middleware.AuthorizeMiddleware(categoryController.Update))
 	router.DELETE("/api/categories/:categoryId", middleware.AuthorizeMiddleware(categoryController.Delete))
 
-	server := http.Server{
-		Addr:    "localhost:3000",
-		Handler: router,
-	}
-
-	err := server.ListenAndServe()
-	helper.PanicIfError(err)
+	return router
 }
