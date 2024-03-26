@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-
-
 func WebResponse(responseWriter http.ResponseWriter, code int, status string, err interface{}) {
 	webResponse := Web_category.WebResponse{
 		Code:   code,

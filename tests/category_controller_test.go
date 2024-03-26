@@ -52,7 +52,26 @@ func TestCreateCategoryFailed(t *testing.T) {
 }
 
 func TestUpdateCategorySuccess(t *testing.T) {
+	router := setupRouter()
+	requestBody := strings.NewReader(`{"name":"Smartphone"}`)
+	request := httptest.NewRequest(http.MethodPut, "http://localhost:3000/api/categories/1", requestBody)
+	request.Header.Add("Content-Type", "application/json")
+	request.Header.Add("X-API-Key", "RAHASIA")
 
+	recorder := httptest.NewRecorder()
+
+	router.ServeHTTP(recorder, request)
+
+	response := recorder.Result()
+	assert.Equal(t, 200, response.StatusCode)
+
+	var responseBody map[string]interface{}
+	bytes, _ := io.ReadAll(response.Body)
+	json.Unmarshal(bytes, &responseBody)
+
+	assert.Equal(t, 200, int(responseBody["Code"].(float64)))
+	assert.Equal(t, "OK", responseBody["Status"])
+	assert.Equal(t, "Smartphone", responseBody["Data"].(map[string]interface{})["Name"])
 }
 
 func TestUpdateCategoryFailed(t *testing.T) {
@@ -85,7 +104,23 @@ func TestGetCategoryFailed(t *testing.T) {
 }
 
 func TestDeleteCategorySuccess(t *testing.T) {
+	router := setupRouter()
+	request := httptest.NewRequest(http.MethodDelete, "http://localhost:3000/api/categories/1", nil)
+	request.Header.Add("Content-Type", "application/json")
+	request.Header.Add("X-API-Key", "RAHASIA")
 
+	recorder := httptest.NewRecorder()
+
+	router.ServeHTTP(recorder, request)
+
+	response := recorder.Result()
+	assert.Equal(t, 200, response.StatusCode)
+
+	var responseBody map[string]interface{}
+	bytes, _ := io.ReadAll(response.Body)
+	json.Unmarshal(bytes, &responseBody)
+
+	assert.Equal(t, 200, response.StatusCode)
 }
 
 func TestDeleteCategoryFailed(t *testing.T) {
@@ -93,5 +128,23 @@ func TestDeleteCategoryFailed(t *testing.T) {
 }
 
 func TestUnauthorize(t *testing.T) {
+	router := setupRouter()
+	request := httptest.NewRequest(http.MethodGet, "http://localhost:3000/api/categories", nil)
+	request.Header.Add("Content-Type", "application/json")
+	request.Header.Add("X-API-Key", "SALAH")
 
+	recorder := httptest.NewRecorder()
+
+	router.ServeHTTP(recorder, request)
+
+	response := recorder.Result()
+	assert.Equal(t, 401, response.StatusCode)
+
+	var responseBody map[string]interface{}
+	bytes, _ := io.ReadAll(response.Body)
+
+	json.Unmarshal(bytes, &responseBody)
+
+	assert.Equal(t, 401, int(responseBody["Code"].(float64)))
+	assert.Equal(t, "Unauthorize", responseBody["Status"])
 }
