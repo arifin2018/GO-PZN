@@ -4,6 +4,8 @@ import (
 	"GoResfulApiPribadi/helpers"
 	"database/sql"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func Database() *sql.DB {

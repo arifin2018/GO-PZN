@@ -1,28 +1,31 @@
 package repositories
 
-// type CategoryRepositoryImpl struct {
-// }
+import (
+	"context"
+)
 
-// func CategoryRepositoryImpl() CategoryRepository {
-// 	return &CategoryRepositoryImpl{}
-// }
+type CategoryRepositoryImpl struct {
+}
 
-// func (repository *CategoryRepositoryImpl) Get() CategoryRepository {
-// 	return repository
-// }
+func CategoryRepositoryConstruct() CategoryRepository {
+	return &CategoryRepositoryImpl{}
+}
 
-// func (repository *CategoryRepositoryImpl) GetById() CategoryRepository {
-// 	return repository
-// }
+func (repository *CategoryRepositoryImpl) Get(ctx context.Context) {
 
-// func (repository *CategoryRepositoryImpl) Insert() CategoryRepository {
-// 	return repository
-// }
+}
 
-// func (repository *CategoryRepositoryImpl) Update() CategoryRepository {
-// 	return repository
-// }
+func (repository *CategoryRepositoryImpl) GetById() {
 
-// func (repository *CategoryRepositoryImpl) Delete() CategoryRepository {
-// 	return repository
-// }
+}
+
+func (repository *CategoryRepositoryImpl) Insert() {
+
+}
+
+func (repository *CategoryRepositoryImpl) Update() {
+
+}
+
+func (repository *CategoryRepositoryImpl) Delete() {
+}

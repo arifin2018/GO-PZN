@@ -1,21 +1,24 @@
 package controllers
 
 import (
-	"fmt"
+	"GoResfulApiPribadi/services"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
 type CategoryControllerImpl struct {
+	CategoryService services.CategoryService
 }
 
-func CategoryConstruct() CategoryController {
-	return &CategoryControllerImpl{}
+func CategoryConstruct(service services.CategoryService) CategoryController {
+	return &CategoryControllerImpl{
+		CategoryService: service,
+	}
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Get(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Println("hai")
+	CategoryControllerImpl.CategoryService.Get(r.Context())
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) GetById(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
