@@ -5,6 +5,8 @@ import (
 	"GoRestfulApi/repositories"
 	"GoRestfulApi/routes"
 	"GoRestfulApi/services"
+	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -36,6 +38,13 @@ func TestCreateCategorySuccess(t *testing.T) {
 
 	response := recorder.Result()
 	assert.Equal(t, 200, response.StatusCode)
+
+	var responseBody map[string]interface{}
+	bytes, _ := io.ReadAll(response.Body)
+	json.Unmarshal(bytes, &responseBody)
+
+	assert.Equal(t, 200, responseBody["Code"])
+	assert.Equal(t, "OK", responseBody["Status"])
 }
 
 func TestCreateCategoryFailed(t *testing.T) {
@@ -51,7 +60,24 @@ func TestUpdateCategoryFailed(t *testing.T) {
 }
 
 func TestGetCategorySuccess(t *testing.T) {
+	router := setupRouter()
+	request := httptest.NewRequest(http.MethodGet, "http://localhost:3000/api/categories/1", nil)
+	request.Header.Add("Content-Type", "application/json")
+	request.Header.Add("X-API-Key", "RAHASIA")
 
+	recorder := httptest.NewRecorder()
+
+	router.ServeHTTP(recorder, request)
+
+	response := recorder.Result()
+	assert.Equal(t, 200, response.StatusCode)
+
+	var responseBody map[string]interface{}
+	bytes, _ := io.ReadAll(response.Body)
+	json.Unmarshal(bytes, &responseBody)
+
+	assert.Equal(t, 200, int(responseBody["Code"].(float64)))
+	assert.Equal(t, "gadget", responseBody["Data"].(map[string]interface{})["Name"])
 }
 
 func TestGetCategoryFailed(t *testing.T) {
