@@ -1,12 +1,15 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-func CategoryController(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	fmt.Println("arifin")
+type CategoryController interface {
+	Get(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
+	GetById(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
+	Insert(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
+	Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
+	Delete(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 }
