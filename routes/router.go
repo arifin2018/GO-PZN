@@ -1,27 +1,16 @@
 package routes
 
 import (
-	"GoRestfulApi/controller"
-	"GoRestfulApi/exception"
-	"GoRestfulApi/middleware"
+	"GoResfulApiPribadi/controllers"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-func Router(categoryController controller.CategoryController) *httprouter.Router {
+func Router() {
 	router := httprouter.New()
+	router.GET("/", controllers.CategoryController)
 
-	Cors(router)
-	router.NotFound = http.HandlerFunc(exception.CustomNotFound)
-	router.MethodNotAllowed = http.HandlerFunc(exception.MethodNotAllowed)
-	router.PanicHandler = exception.ErrorHandler
+	http.ListenAndServe(":8080", router)
 
-	router.GET("/api/categories", middleware.AuthorizeMiddleware(categoryController.FindAll))
-	router.GET("/api/categories/:categoryId", middleware.AuthorizeMiddleware(categoryController.FindById))
-	router.POST("/api/categories", middleware.AuthorizeMiddleware(categoryController.Create))
-	router.PUT("/api/categories/:categoryId", middleware.AuthorizeMiddleware(categoryController.Update))
-	router.DELETE("/api/categories/:categoryId", middleware.AuthorizeMiddleware(categoryController.Delete))
-
-	return router
 }
