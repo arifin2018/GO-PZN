@@ -1,11 +1,14 @@
 package services
 
-import "context"
+import (
+	"GoResfulApiPribadi/model"
+	"context"
+)
 
 type CategoryService interface {
 	Get(ctx context.Context)
 	GetById()
-	Insert()
+	Insert(ctx context.Context, category *model.Category) *model.Category
 	Update()
 	Delete()
 }

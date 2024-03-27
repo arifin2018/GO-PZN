@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"GoResfulApiPribadi/model"
 	"context"
 	"database/sql"
 )
@@ -8,7 +9,7 @@ import (
 type CategoryRepository interface {
 	Get(ctx context.Context, sqltx *sql.Tx)
 	GetById()
-	Insert()
+	Insert(ctx context.Context, sqltx *sql.Tx, category *model.Category) *model.Category
 	Update()
 	Delete()
 }

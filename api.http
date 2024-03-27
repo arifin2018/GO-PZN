@@ -1,3 +1,11 @@
 ### Get all category
 GET http://localhost:8080/
 Accept: application/json
+
+### POST all category
+POST http://localhost:8080/
+Accept: application/json
+
+{
+    "Name": "Komputer"
+}

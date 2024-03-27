@@ -31,7 +31,13 @@ func (repository *CategoryRepositoryImpl) GetById() {
 
 }
 
-func (repository *CategoryRepositoryImpl) Insert() {
+func (repository *CategoryRepositoryImpl) Insert(ctx context.Context, sqltx *sql.Tx, category *model.Category) *model.Category {
+	result, err := sqltx.ExecContext(ctx, "INSERT INTO Category(Name) VALUES(?)", category.Name)
+	helpers.PanicIfError(err)
+	id, err := result.LastInsertId()
+	helpers.PanicIfError(err)
+	category.Id = int(id)
+	return category
 
 }
 
