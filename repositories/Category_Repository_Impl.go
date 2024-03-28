@@ -41,8 +41,10 @@ func (repository *CategoryRepositoryImpl) Insert(ctx context.Context, sqltx *sql
 
 }
 
-func (repository *CategoryRepositoryImpl) Update() {
-
+func (repository *CategoryRepositoryImpl) Update(ctx context.Context, sqltx *sql.Tx, category *model.Category) *model.Category {
+	_, err := sqltx.ExecContext(ctx, "UPDATE Category SET Name = (?) where id = (?)", category.Name, category.Id)
+	helpers.PanicIfError(err)
+	return category
 }
 
 func (repository *CategoryRepositoryImpl) Delete() {

@@ -32,21 +32,20 @@ func (repository *CategoryServiceImpl) Insert(ctx context.Context, category *mod
 	sqltx, err := repository.DB.Begin()
 	helpers.PanicIfError(err)
 
-	defer func() {
-		if err != nil {
-			errorRollback := sqltx.Rollback()
-			helpers.PanicIfError(errorRollback)
-		} else {
-			errorCommit := sqltx.Commit()
-			helpers.PanicIfError(errorCommit)
-		}
-	}()
+	defer helpers.CommitOrRollback(sqltx, err)
 
 	dataResultCategory := repositories.CategoryRepositoryConstruct().Insert(ctx, sqltx, category)
 	return dataResultCategory
 }
 
-func (repository *CategoryServiceImpl) Update() {
+func (repository *CategoryServiceImpl) Update(ctx context.Context, category *model.Category) *model.Category {
+	sqlTx, err := repository.DB.Begin()
+	helpers.PanicIfError(err)
+
+	defer helpers.CommitOrRollback(sqlTx, err)
+
+	modelCategory := repository.CategoryRepository.Update(ctx, sqlTx, category)
+	return modelCategory
 }
 
 func (repository *CategoryServiceImpl) Delete() {

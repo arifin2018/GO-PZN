@@ -10,6 +10,6 @@ type CategoryRepository interface {
 	Get(ctx context.Context, sqltx *sql.Tx)
 	GetById()
 	Insert(ctx context.Context, sqltx *sql.Tx, category *model.Category) *model.Category
-	Update()
+	Update(ctx context.Context, sqltx *sql.Tx, category *model.Category) *model.Category
 	Delete()
 }

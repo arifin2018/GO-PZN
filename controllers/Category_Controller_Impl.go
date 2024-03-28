@@ -5,7 +5,9 @@ import (
 	"GoResfulApiPribadi/model"
 	"GoResfulApiPribadi/services"
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -39,8 +41,19 @@ func (CategoryControllerImpl *CategoryControllerImpl) Insert(w http.ResponseWrit
 	helpers.JsonResponse(w, result)
 }
 
-func (CategoryControllerImpl *CategoryControllerImpl) Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-
+func (CategoryControllerImpl *CategoryControllerImpl) Update(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	var category model.Category
+	err := json.NewDecoder(r.Body).Decode(&category)
+	helpers.PanicIfError(err)
+	number, err := strconv.Atoi(params.ByName("id"))
+	helpers.PanicIfError(err)
+	category.Id = number
+	fmt.Println(category)
+	modelCategory := CategoryControllerImpl.CategoryService.Update(r.Context(), &category)
+	result := map[string]any{
+		"Data": modelCategory,
+	}
+	helpers.JsonResponse(w, result)
 }
 
 func (CategoryControllerImpl *CategoryControllerImpl) Delete(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

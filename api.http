@@ -9,3 +9,11 @@ Accept: application/json
 {
     "Name": "Komputer"
 }
+
+### PUT all category
+PUT http://localhost:8080/2
+Accept: application/json
+
+{
+    "Name": "Laptop"
+}
